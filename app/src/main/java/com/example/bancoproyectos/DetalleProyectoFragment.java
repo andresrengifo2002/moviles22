@@ -14,9 +14,8 @@ import androidx.fragment.app.Fragment;
 public class DetalleProyectoFragment extends Fragment {
     TextView nombre;
     ImageView imagen;
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+  /*  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detalle_proyecto_fragment,container,false);
         nombre = view.findViewById(R.id.nombre_detalle);
         imagen = view.findViewById(R.id.imagen_detalleid);
@@ -29,5 +28,5 @@ public class DetalleProyectoFragment extends Fragment {
 
         }
         return view;
-    }
+    }*/
 }

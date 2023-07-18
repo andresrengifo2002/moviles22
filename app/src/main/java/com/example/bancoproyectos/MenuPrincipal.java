@@ -47,61 +47,6 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navigationView);
 
-        drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navigationView);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        actionBarDrawerToggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.perfil:
-                        Intent i = new Intent(MenuPrincipal.this, Perfil.class);
-                        startActivity(i);
-                        return true;
-
-                    case R.id.mis_proyectos:
-                        Intent in = new Intent(MenuPrincipal.this, MisProyectos.class);
-                        startActivity(in);
-                        return true;
-
-
-                    default:
-                        return false;
-                }
-            }
-        });
-    }
-
-        private void remplaceFragment(Fragment fragment){
-            FragmentManager frgManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = frgManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmenPadre, fragment);
-            fragmentTransaction.commit();
-        }
-
-        public void enviarProyecto(Listadoproyectos listadoproyectos) {
-
-            detalleProyectoFragment = new DetalleProyectoFragment();
-
-            Bundle bundleEnvio = new Bundle();
-
-            bundleEnvio.putSerializable("objeto", (Serializable) listadoproyectos);
-            detalleProyectoFragment.setArguments(bundleEnvio);
-
-
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, detalleProyectoFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
     }
 }

@@ -17,7 +17,7 @@ public class regristro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regristro);
         et_email= (EditText) findViewById(R.id.txt_email);
-        et_contraseña1= (EditText) findViewById(R.id.txt_contraseña1);
+        et_contraseña1= (EditText) findViewById(R.id.tVpaprendizSelect2);
         et_contraseña2 = (EditText) findViewById(R.id.txt_contraseña2);
 
     }

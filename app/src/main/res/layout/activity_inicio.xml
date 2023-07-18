@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/sin_t_tulo_3"
     android:gravity="center"
-    android:onClick="onClick"
     android:orientation="vertical"
     tools:context=".Inicio"
     tools:visibility="visible">
@@ -94,7 +93,8 @@
                     android:layout_width="33dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/baseline_remove_red_eye_24" />
+                    android:background="@drawable/baseline_remove_red_eye_24"
+                     />
 
             </LinearLayout>
 

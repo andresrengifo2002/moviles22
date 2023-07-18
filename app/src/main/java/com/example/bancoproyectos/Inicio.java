@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Inicio extends AppCompatActivity {
     private EditText etu, etc;
-    private Button inicio;
     LoginApiService loginApiService;
     Retrofit retrofit;
     Button boton , showPasswordButton;

@@ -5,34 +5,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/imagenpro"
     tools:context=".DetalleProyecto">
 
   <EditText
       android:id="@+id/txt_descrip"
       android:layout_width="384dp"
       android:layout_height="77dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="48dp"
+      android:layout_marginStart="20dp"
       android:ems="10"
       android:inputType="textPersonName"
       android:text="Descsripcion"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/txt_estado" />
+      tools:layout_editor_absoluteY="316dp"
+      tools:ignore="MissingConstraints" />
 
   <TextView
-      android:id="@+id/txt_nombre_proyecto"
+      android:id="@+id/nombre_proyecto"
       android:layout_width="186dp"
       android:layout_height="36dp"
-      android:layout_marginStart="32dp"
-      android:layout_marginTop="136dp"
+      android:layout_marginStart="68dp"
       android:text="TextView"
       app:layout_constraintStart_toEndOf="@+id/imageView3"
-      app:layout_constraintTop_toTopOf="parent" />
+      tools:layout_editor_absoluteY="70dp"
+      tools:ignore="MissingConstraints" />
 
   <TextView
-      android:id="@+id/txt_contraseña1"
-      android:layout_width="386dp"
-      android:layout_height="112dp"
+      android:id="@+id/tVpaprendizSelect2"
+      android:layout_width="392dp"
+      android:layout_height="46dp"
       android:layout_marginStart="12dp"
       android:layout_marginTop="36dp"
       android:text="TextView"
@@ -45,52 +46,55 @@
       android:layout_height="40dp"
       android:layout_marginStart="36dp"
       android:layout_marginTop="40dp"
+      android:layout_marginEnd="49dp"
       android:text="TextView"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/imageView3"
-      app:layout_constraintTop_toBottomOf="@+id/txt_nombre_proyecto" />
+      app:layout_constraintTop_toBottomOf="@+id/nombre_proyecto" />
 
   <ImageView
       android:id="@+id/imageView3"
       android:layout_width="138dp"
       android:layout_height="175dp"
       android:layout_marginStart="24dp"
+      android:layout_marginTop="35dp"
+      android:layout_marginEnd="32dp"
+      android:layout_marginBottom="36dp"
+      app:layout_constraintBottom_toTopOf="@+id/txt_descrip"
+      app:layout_constraintEnd_toStartOf="@+id/nombre_proyecto"
       app:layout_constraintStart_toStartOf="parent"
-      app:srcCompat="@android:drawable/ic_menu_gallery"
-      tools:layout_editor_absoluteY="117dp" />
-
-  <ImageView
-      android:layout_width="61dp"
-      android:layout_height="66dp"
-      android:layout_marginTop="40dp"
-      android:layout_marginEnd="40dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-       />
+      app:layout_constraintTop_toBottomOf="@+id/button"
+      app:layout_constraintVertical_bias="0.0"
+      app:srcCompat="@android:drawable/ic_menu_gallery" />
 
   <TextView
-      android:id="@+id/txt_codigo_fuente"
-      android:layout_width="380dp"
-      android:layout_height="102dp"
+      android:id="@+id/codigo_fuente"
+      android:layout_width="399dp"
+      android:layout_height="60dp"
       android:text="TextView"
-      tools:layout_editor_absoluteX="12dp"
-      tools:layout_editor_absoluteY="549dp" />
+      tools:layout_editor_absoluteX="-4dp"
+      tools:layout_editor_absoluteY="492dp"
+      tools:ignore="MissingConstraints" />
 
   <TextView
-      android:id="@+id/textView"
+      android:id="@+id/categoria"
       android:layout_width="376dp"
       android:layout_height="60dp"
       android:text="TextView"
       tools:layout_editor_absoluteX="16dp"
-      tools:layout_editor_absoluteY="720dp" />
+      tools:layout_editor_absoluteY="583dp"
+      tools:ignore="MissingConstraints" />
 
   <Button
+      android:id="@+id/button"
       android:layout_width="61dp"
       android:layout_height="38dp"
       android:layout_marginStart="12dp"
       android:layout_marginTop="16dp"
-      android:onClick="onClick"
       app:icon="@android:drawable/ic_menu_revert"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+      <!--android:onClick="onClick" -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
