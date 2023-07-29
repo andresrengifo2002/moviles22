@@ -1,7 +1,10 @@
 package com.example.bancoproyectos;
 
+import static com.example.bancoproyectos.R.id.dialogEstado;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,16 +15,23 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bancoproyectos.api.ProyectosApiService;
 import com.google.android.material.navigation.NavigationView;
+
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,6 +60,8 @@ public class MainActivitylistado extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+    SharedPreferences sharedPreferences;
+
 
 
     @Override
@@ -60,24 +72,24 @@ public class MainActivitylistado extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navigationView);
+       /* drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.navigationView);*/
 
-        recyclerView = findViewById(R.id.recyclerView);
+        /*recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());*/
 
 
 
 
 
 
-        drawerLayout = findViewById(R.id.drawer);
+        /*drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.syncState();*/
 
         listaListadoProyectosAdapter = new ListaListadoProyectosAdapter(this);
         recyclerView.setAdapter(listaListadoProyectosAdapter);
@@ -95,8 +107,7 @@ public class MainActivitylistado extends AppCompatActivity {
 
         obtenerDatos();
         //listarproyectoselect();
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+       /* navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -112,10 +123,55 @@ public class MainActivitylistado extends AppCompatActivity {
 
 
                     default:
-                        return false;
-                }
+                        return false; }
+            }
+        });*/
+    }
+
+    public void logout(){
+        SharedPreferences.Editor editor = new sharedPreferences.edit();
+        editor.remove("accessToken");
+        editor.apply();
+
+        Intent intent = new Intent();
+        startActivity(intent);
+        finish();
+    }
+
+    public void mostrarCuadrodialogo(Listadoproyectos proyectoss) {
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+
+        View dialogView = getLayoutInflater().inflate(R.layout.card_2,null);
+
+        builder.setView(dialogView);
+
+        final AlertDialog dialog = builder.create();
+
+        dialog.show();
+        ImageView dialogImagenView = dialogView.findViewById(R.id.dialogImageView);
+        TextView dialogTitle =dialogView.findViewById(R.id.dialogTitle);
+        TextView dialogDescription =dialogView.findViewById(R.id.dialogDescription);
+
+        TextView dialogCodigo =dialogView.findViewById(R.id.dialogCodigo);
+        TextView dialogEstado =dialogView.findViewById(R.id.dialogEstado);
+        dialogTitle.setText(proyectoss.getNombre_proyecto());
+        dialogDescription.setText(proyectoss.getDescripcion());
+
+        dialogCodigo.setText(proyectoss.getCodigo_fuente());
+        dialogEstado.setText(proyectoss.getEstado());
+
+        Glide.with(this)
+                .load(proyectoss.getFoto())
+                .into(dialogImagenView);
+        Button closeButton = dialogView.findViewById(R.id.close_button);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
+        dialog.show();
     }
 
     private void remplaceFragment(Fragment fragment){
@@ -159,10 +215,10 @@ public class MainActivitylistado extends AppCompatActivity {
                     List<Listadoproyectos> proyectos = response.body();
                     for (int i = 0; i < proyectos.size(); i++) {
                         Listadoproyectos p= proyectos.get(i);
+                        listaListadoProyectosAdapter.add((ArrayList<Listadoproyectos>) proyectos);
                         Log.e(TAG, "products: " + p.getNombre_proyecto());
                     }
-
-                    listaListadoProyectosAdapter.add((ArrayList<Listadoproyectos>) proyectos);
+                   /* listaListadoProyectosAdapter.add((ArrayList<Listadoproyectos>) proyectos);*/
                 }
             }
 

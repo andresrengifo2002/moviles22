@@ -2,7 +2,9 @@ package com.example.bancoproyectos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,10 +30,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Inicio extends AppCompatActivity {
     private EditText etu, etc;
+
+    Context context;
     LoginApiService loginApiService;
     Retrofit retrofit;
     Button boton , showPasswordButton;
+
+
     ImageView myImage;
+
+    String token;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,15 @@ public class Inicio extends AppCompatActivity {
         showPasswordButton = findViewById(R.id.buttonver);
         ImageView myImage = findViewById(R.id.imageView4);
         EditText passwordEditText = findViewById(R.id.edtcontraseña);
+        sharedPreferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+        token = sharedPreferences.getString("accessToken", null);
+        if (token != null){
+            Intent intent = new Intent();
+            startActivity(intent);
+            finish();
+
+        }
+
         showPasswordButton.setOnClickListener(new View.OnClickListener() {
             boolean isPasswordVisible = false;
 
@@ -91,7 +110,10 @@ public class Inicio extends AppCompatActivity {
                      public void onResponse(Call<Login> call, Response<Login> response) {
                          if(response.isSuccessful()) {
                              Login login = response.body();
+                             SharedPreferences.Editor editor = sharedPreferences.edit();
                              String token=login.getAccess_token();
+                             editor.putString("accessToken", token);
+                             editor.apply();
                              /* Toast.makeText(Inicio.this,token,Toast.LENGTH_LONG).show();*/
                              Intent I = new Intent(Inicio.this, MainActivitylistado.class);
                              I.putExtra("token",token);
@@ -111,7 +133,10 @@ public class Inicio extends AppCompatActivity {
 
              }
          });
-    }
+
+        }
+
+
    /* public  void incio(View v){
         loginApiService=retrofit.create(LoginApiService.class);
         String usern =etu.getText().toString();

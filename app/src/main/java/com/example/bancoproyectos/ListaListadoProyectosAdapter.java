@@ -24,10 +24,8 @@ public class ListaListadoProyectosAdapter extends RecyclerView.Adapter<ListaList
 
         private TextView title;
         private ImageView image;
-        private TextView descripcionProyecto;
-        private TextView  aprendiz;
-        private TextView estado;
-        private  TextView codigofuente;
+
+        private TextView verMasTextView;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -37,6 +35,7 @@ public class ListaListadoProyectosAdapter extends RecyclerView.Adapter<ListaList
             codigofuente=itemView.findViewById(R.id.codigofuente);
             aprendiz=itemView.findViewById(R.id.aprendiz);
             estado=itemView.findViewById(R.id.estado);*/
+            verMasTextView = itemView.findViewById(R.id.vermas);
 
         }
 
@@ -67,6 +66,17 @@ public class ListaListadoProyectosAdapter extends RecyclerView.Adapter<ListaList
         Glide.with(context)
                 .load(p.getFoto())
                 .into(holder.image);
+
+        holder.verMasTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Listadoproyectos proyectoss = dataset.get(position);
+
+                ((MainActivitylistado)context).mostrarCuadrodialogo(proyectoss);
+            }
+        });
+
     }
 
     @Override
